@@ -1,0 +1,1 @@
+var restaurantController = angular.module('restaurantController', []);

@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en" ng-app="restaurantController">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Restaurant App</title>
+  <script src="lib/angular.js"></script>
+  <script src="app.js"></script>
+  <script src="js/RestaurantController.js"></script>
+  <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+
+<body>
+
+<div class="container" ng-controller="restaurantCtrl">
+
+   <div class="row">
+     <center>
+
+         <div class="col-md-12"><h1>Here Are the Best Restaurants In town</h1>
+         <div ng-repeat="item in filtered= (restaurants| filter:query)"><div>
+           
+                 <h3>{{ item.name}} </h3>
+                 <p>Cusine:{{item.cuisine}}</p>
+                 <p>Address:{{item.address}}</p>
+                 <p>Rated:{{item.rate}}</p>
+                 <span ng-click="editing = true" ng-hide="editing"><button class="btn btn-default btn-primary" >Edit</button></span>
+                 <a ng-click="deleteRestaurant(item)"><button class="btn btn-default btn-danger">Delete</button></a>
+             
+           
+             
+          
+         <span class="form-group" ng-show="editing" ng-submit="editing = false">
+            <form class="form-inline" role="form">
+              <input type="text" class="form-control input-sm" ng-model="item.name" placeholder="Name" required/>
+              <input type="text" class="form-control input-sm" ng-model="item.cuisine" placeholder="Cuisine" required/>
+              <input type="text" class="form-control input-sm" ng-model="item.address" placeholder="Address" required/>
+              <select ng-model="item.rate" >
+                     <option value="5 Star">5 Star</option>
+                     <option value="4 Star">4 Star</option>
+                     <option value="3 Star">3 Star</option>
+                     <option value="2 Star">2 Star</option>
+                     <option value="2 Star">1 Star</option>
+               </select>
+
+              <button class="btn btn-default btn-sm" type="submit">Save</button>
+            </form>
+         </div>
+         </div>
+                      
+    
+         </div>
+      </center>
+     <!--  Addding form -->
+         <div class="col-md-6">
+           <h2>Add a Restaurant</h2>
+           <form ng-submit="addRestaurant()" role="form">
+           <input type="text" ng-model="resname" class="form-control" placeholder="Restaurant Name">
+           <br/>
+           <input type="text" ng-model="cuisine" class="form-control" placeholder="Cuisine Type">
+            <br/>
+           <input type="text" ng-model="address" class="form-control" placeholder="Address">
+            <br/>
+               <select ng-model="rate" >
+                     <option value="5 Star">5 Star</option>
+                     <option value="4 Star">4 Star</option>
+                     <option value="3 Star">3 Star</option>
+                     <option value="2 Star">2 Star</option>
+                     <option value="2 Star">1 Star</option>
+               </select>
+           <button>Submit</button>
+           </form>
+           
+         </div>
+      <!--    Ending form -->
+                            <!--  Search Column -->
+         <span ng-show="restaurants.length"> 
+         <div class="col-md-6"><h2>Search Restaurant By:</h2>
+            <input type="text" ng-model="query.name" class="form-control" placeholder="Name">
+            <input type="text" ng-model="query.cuisine" class="form-control" placeholder="Cuisine">
+            <input type="text" ng-model="query.address" class="form-control" placeholder="Address">
+          </div>
+          <!--  Search Column Ending -->
+         </span>
+   </div><!-- Ending row -->
+
+
+
+<!-- Container div ends --></div>
+ </body>s
+</html>
